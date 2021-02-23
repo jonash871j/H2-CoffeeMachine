@@ -8,7 +8,7 @@ namespace Machines
     public class CoffeeMachine : Machine
     {
         public CoffeeMachine(int sizeFactor)
-            : base(isTurnedOn: false)
+            : base()
         {
             MaxWaterMlAmount = 100 * sizeFactor;
             MaxCoffeBeans = 10 * sizeFactor;
