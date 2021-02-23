@@ -30,9 +30,7 @@ namespace Machines
 
         public override string ToString()
         {
-            return $"- Brewage is {Name}\n" +
-                $"{MlAmount}ml\n" +
-                $"{Concentration}% concentration";
+            return $"Brewage consits of {MlAmount}ml {Name} with a concentration of {Concentration}%";
         }
     }
 }

@@ -1,50 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Text;
-
-namespace Machines
+﻿namespace Machines
 {
-    public class CoffeeMachine : HotDrinkFilterMachine
+    public class CoffeeMachine : Machine
     {
-        public int CoffeeBeansAmount { get; private set; } = 0;
+        public FilterHolder FilterHolder { get; private set; } = new FilterHolder();
+        public int WaterMlAmount { get; private set; } = 0;
 
-        public string AddCoffeeBeans(int amount)
+        public string InsertFilter(Filter filter) => FilterHolder.InsertFilter(filter);
+        public string RemoveFilter() => FilterHolder.RemoveFilter();
+        public string FillWithWater(int mlAmount)
         {
-            if (!IsFilterInserted)
-            {
-                return "No filter was inserted";
-            }
-            else
-            {
-                CoffeeBeansAmount += amount;
-                return $"{amount} beans was added to the machine";
-            }
+            WaterMlAmount += mlAmount;
+            return $"{mlAmount}ml Water was added to the machine";
         }
 
-        public override string Brew(ref Can can)
+        public string Brew(ref Can can)
         {
-            if ((!IsTurnedOn) || (!IsFilterInserted) || (WaterMlAmount <= 0) || (CoffeeBeansAmount <= 0))
+            if ((!FilterHolder.HasCleanFilterWithIngredient()) || (WaterMlAmount <= 0))
             {
-                return "Couldn't brew coffee!";
+                return "Couldn't brew!";
             }
             else
             {
-                can.FillWithBrewage(new Brewage(WaterMlAmount, CoffeeBeansAmount, "Coffee"));
+                Brewage brewage = FilterHolder.Filter.PourWater(WaterMlAmount);
+                can.FillWithBrewage(brewage);
 
                 WaterMlAmount = 0;
-                CoffeeBeansAmount = 0;
 
-                return "Coffee was brewed.";
+                return $"{FilterHolder.Filter.IngredentName} was brewed in can.";
             }
-        }
-
-        public override string ToString()
-        {
-            return $"IsTurnedOn     : {IsTurnedOn}\n" +
-                $"IsFilterInserted  : {IsFilterInserted}\n" +
-                $"WaterMlAmount     : {WaterMlAmount}\n" +
-                $"CoffeeBeansAmount : {CoffeeBeansAmount}\n";
         }
     }
 }

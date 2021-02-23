@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Machines
+﻿namespace Machines
 {
     public abstract class Machine
     {

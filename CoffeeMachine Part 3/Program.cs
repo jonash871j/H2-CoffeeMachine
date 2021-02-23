@@ -1,6 +1,5 @@
-﻿using System;
-using System.Threading;
-using Machines;
+﻿using Machines;
+using System;
 
 class Program
 {
@@ -26,6 +25,18 @@ class Program
         Console.WriteLine(can.Empty());
         Console.WriteLine(coffeMachine.Brew(ref can));
         Console.WriteLine(can.Brewage.ToString());
+        Console.WriteLine(coffeMachine.FilterHolder.Filter.ToString());
+        Console.WriteLine();
+
+
+        Console.WriteLine(coffeMachine.RemoveFilter());
+        Console.WriteLine(coffeMachine.InsertFilter(new Filter("Ekspresso", 50)));
+        Console.WriteLine(coffeMachine.FillWithWater(50));
+        Console.WriteLine();
+
+        Cup cup = new Cup();
+        Console.WriteLine(coffeMachine.Brew(ref cup));
+        Console.WriteLine(cup.Brewage.ToString());
         Console.WriteLine(coffeMachine.FilterHolder.Filter.ToString());
         Console.WriteLine();
 

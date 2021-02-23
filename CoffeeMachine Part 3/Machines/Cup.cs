@@ -1,12 +1,12 @@
 ﻿namespace Machines
 {
-    public class Can
+    public class Cup
     {
-        public Can()
+        public Cup()
         {
             Empty();
         }
-        public Can(Brewage brewage)
+        public Cup(Brewage brewage)
         {
             Brewage = brewage;
         }

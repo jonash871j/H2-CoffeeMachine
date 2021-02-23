@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Machines
+﻿namespace Machines
 {
     public class Can
     {
         public Can()
         {
-            EmptyCan();
+            Empty();
         }
         public Can(Brewage brewage)
         {
@@ -21,7 +17,7 @@ namespace Machines
         {
             Brewage = brewage;
         }
-        public string EmptyCan()
+        public string Empty()
         {
             Brewage = Brewage.ThinAir;
             return "Can was empty out";

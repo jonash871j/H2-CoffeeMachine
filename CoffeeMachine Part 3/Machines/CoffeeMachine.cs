@@ -29,5 +29,28 @@
                 return $"{FilterHolder.Filter.IngredentName} was brewed in can.";
             }
         }
+
+        // Copy paste :(
+        // Should have look like this
+        // Brew(ref FillableContainer) { code... }
+        // Brew(ref Can can) => Brew(can);
+        // Brew(ref Cup cup) => Brew(cup);
+
+        public string Brew(ref Cup cup)
+        {
+            if ((!FilterHolder.HasCleanFilterWithIngredient()) || (WaterMlAmount <= 0))
+            {
+                return "Couldn't brew!";
+            }
+            else
+            {
+                Brewage brewage = FilterHolder.Filter.PourWater(WaterMlAmount);
+                cup.FillWithBrewage(brewage);
+
+                WaterMlAmount = 0;
+
+                return $"{FilterHolder.Filter.IngredentName} was brewed in cup.";
+            }
+        }
     }
 }
