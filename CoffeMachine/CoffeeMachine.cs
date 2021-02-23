@@ -27,6 +27,10 @@ namespace Machines
         public bool IsFilterInserted { get; private set; }
         public bool IsBrewing { get; private set; }
 
+        /// <summary>
+        /// Used to insert filter
+        /// </summary>
+        /// <returns>Message process state</returns>
         public string InsertFilter()
         {
             if (IsFilterInserted)
@@ -36,6 +40,11 @@ namespace Machines
             IsFilterInserted = true;
             return $"Filter was inserted";
         }
+
+        /// <summary>
+        /// Used to remove filter
+        /// </summary>
+        /// <returns>Message process state</returns>
         public string RemoveFilter()
         {
             if (!IsFilterInserted)
@@ -46,6 +55,10 @@ namespace Machines
             return $"Filter was removed";
         }
 
+        /// <summary>
+        /// Used fill machine with water
+        /// </summary>
+        /// <returns>Message process state</returns>
         public string FillWithWater(int mlAmount)
         {
             if (WaterMlAmount + mlAmount > MaxWaterMlAmount)
@@ -59,6 +72,10 @@ namespace Machines
             }
         }
 
+        /// <summary>
+        /// Used add coffe beans to filter
+        /// </summary>
+        /// <returns>Message process state</returns>
         public string AddCoffeeBeans(int amount)
         {
             if (!IsFilterInserted)
@@ -77,7 +94,11 @@ namespace Machines
             }
         }
 
-        public string EmptyOutCoffeCan()
+        /// <summary>
+        /// Used to empty all coffee out of the can
+        /// </summary>
+        /// <returns>Message process state</returns>
+        public string EmptyOutCoffeeCan()
         {
             if (CoffeeMlAmount <= 0)
             {
@@ -87,9 +108,13 @@ namespace Machines
             return "Coffee can was empty out";
         }
 
+        /// <summary>
+        /// Used to brew the coffee
+        /// </summary>
+        /// <returns>Message of the brewing process</returns>
         public string BrewCoffee()
         {
-            if ((!IsTurnedOn) || (!IsFilterInserted) || (WaterMlAmount - 10 <= 0) || (CoffeeBeansAmount - 1 <= 0))
+            if ((!IsTurnedOn) || (!IsFilterInserted) || (WaterMlAmount - 10 < 0) || (CoffeeBeansAmount - 1 < 0))
             {
                 IsBrewing = false;
                 return "Couldn't brew coffee!";

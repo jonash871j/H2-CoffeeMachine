@@ -13,6 +13,10 @@ namespace Machines
 
         public bool IsTurnedOn { get; protected set; }
 
+        /// <summary>
+        /// Used to turn on the machine
+        /// </summary>
+        /// <returns>Message process state</returns>
         public virtual string TurnOn()
         {
             if (IsTurnedOn)
@@ -22,6 +26,10 @@ namespace Machines
             IsTurnedOn = true;
             return "Machine was turned on";
         }
+        /// <summary>
+        /// Used to turn off the machine
+        /// </summary>
+        /// <returns>Message process state</returns>
         public virtual string TurnOff()
         {
             if (!IsTurnedOn)
